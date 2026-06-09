@@ -1,0 +1,21 @@
+##
+#  Recommended: ToDo: for this session...
+##
+	- build a timeline (project schedule)
+  	- build beginner user-stories list 	
+	- build a 'Big Board' sketch (fast: e.g. excalidraw)
+	- build at least 2 User Tasks (from user stores)
+	Terms: a)Lookup and understand
+		   b)Give-example in your context:
+
+ 		MVP (Minimal Viable Product)
+		Competitor Analysis
+ 		Value Proposition
+		USP (Unique Selling Point)
+		KPI (Key Performance Indicator)
+		User Acceptance Testing (UAT)
+		Agile development 
+		('SCRUM', 'sprint', Kanban, XP, 'iterative', 'incremental', 'timeboxed')
+		Focus: 'incremental', 'iterative'
+		Rapid prototyping
+		Target Audience (Segmentation)
