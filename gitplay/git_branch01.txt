@@ -1,0 +1,431 @@
+
+##
+# Ref: git-scm online book:
+#
+https://git-scm.com/book/en/v2
+
+https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#
+
+## 
+
+##
+# VSCode GitBash terminal...
+##
+
+
+# create folder
+# ../gitplay/
+
+# create within
+# ../gitplay/git_branch01
+
+# Open in terminal
+~/...gitplay/git_branch01
+$
+
+
+# create a new text file
+touch story.txt		
+
+# open in vscode
+code story.txt
+
+# add a line and save
+This it my first line.
+
+# git status to show not tracked by git yet
+$ git status
+fatal: not a git repository (or any of the parent directories): .git
+
+
+# git init
+$ git init
+Initialized empty Git repository in ...
+
+#git status
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+...
+        story.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+
+##
+# If 'On branch' is 'master'
+# change to use 'main' as branchname for default branch
+#  (... thereafter git status shows 'main' as branchname)
+
+$ git branch -m main
+$ git status
+On branch main
+...
+Untracked files:
+        story.txt
+		
+
+##
+# [Note: to use 'main' permanently: run:
+#	git config --global init.defaultBranch main
+# ]
+##
+$ git add .
+
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+...
+        new file:   story.txt
+
+
+# commit message then status shows 'working tree clean'
+$ git commit -m "initial commit: add first line"
+...
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+# git branch (show branches)
+$ git branch
+* main
+
+
+
+# Create new branch  and show
+# 	(git branch <branch-name>)
+$ git branch featureX
+
+$ git branch
+  featureX
+* main
+
+
+# switch branch
+# 	(See '*' shows selected branch)
+$ git checkout featureX
+Switched to branch 'featureX'
+
+$ git branch
+* featureX
+  main
+  
+  
+#  
+# (*featureX) selected  
+#  Add line to file
+
+(* featureX) Added new '~feature' line here.
+
+
+
+# See changed:
+#	(see '*featureX' & 'modified')
+#
+$ git status
+On branch featureX
+Changes not staged for commit:
+...
+        modified:   story.txt
+		
+		
+
+#
+# git add/status/commit
+$ git add .
+
+$ git status
+On branch featureX
+Changes to be committed:
+...
+        modified:   story.txt
+
+
+$ git commit -m "add featureX new feature line"
+ ...
+ 1 file changed ...
+ 
+ 
+ 
+ #
+ # Switch branch to main
+ #
+ $ git checkout main
+Switched to branch 'main'
+
+$ git branch
+  featureX
+* main
+ 
+
+#
+# See visible story.txt file 
+#  changed to first version 
+#  with first line only
+
+
+#
+# Switch back to featureX
+#
+$ git checkout featureX
+Switched to branch 'featureX'
+ 
+ 
+#
+# See visible story.txt file 
+#  changed to featureX version 
+ 
+ 
+ 
+##
+# Merge featureX to main
+#
+
+# See on featureX branch
+#
+$ git branch
+* featureX
+  main
+
+# Switch to main
+#
+$ git checkout main
+Switched to branch 'main'
+
+
+# Do: git merge from main
+#
+$ git branch
+  featureX
+* main
+
+$ git merge featureX
+Updating cedd4ab..9dfa291
+Fast-forward
+ story.txt | 4 +++-
+ 1 file changed,...
+ 
+ #
+ # See main story.txt
+ #   now has featureX content
+ #
+ 
+ 
+ 
+ 
+ 
+ ##
+ # Step02: multiple feature branches
+ #		beginning steps
+ ##
+ 
+ #
+ # create featureY and featureZ branches
+ #
+$ git branch featureY
+
+$ git branch featureZ
+
+$ git branch
+  featureX
+  featureY
+  featureZ
+* main
+ 
+ 
+##
+# switch featureY
+#   & add featureY line
+#   (need git add/commit)
+
+$ git checkout featureY
+Switched to branch 'featureY'
+
+$ git branch
+  featureX
+* featureY
+  featureZ
+  main
+  
+  
+# add line to story.txt & save
+"
+(* featureY) Added new '~feature' line here .
+" 
+
+$ git add story.txt 
+
+$ git commit -m "add featureY line"
+...
+ 1 file changed,
+ 
+ 
+#
+# Switch back and forth
+#  See visible file changes
+#
+$ git checkout main
+Switched to branch 'main'
+
+$ git checkout featureY
+Switched to branch 'featureY'
+
+
+
+##
+# See main and featureZ
+#  untouched.
+
+
+
+
+##
+# Add featureZ and see all
+
+$ git checkout featureZ
+Switched to branch 'featureZ'
+
+# add line to story.txt & save
+"
+(* featureZ) Added new '~feature' line here .
+" 
+
+$ git add story.txt 
+
+$ git commit -m "add featureZ line"
+ ...
+ 1 file changed, 
+
+
+#
+# view versions of each branch
+#
+#   featureX
+#   featureY
+# * featureZ
+#   main
+
+
+$ git checkout main
+Switched to branch 'main'
+
+$ git checkout featureY
+Switched to branch 'featureY'
+
+$ git checkout featureZ
+Switched to branch 'featureZ'
+
+
+
+##
+# git log to see history
+#
+
+##
+# git log to see history
+#
+
+...gitplay/git_branch01 (featureZ)                                    	#(on featureZ branch)
+$ git log                                                            	# show commit history
+
+commit d40e579a86733b495746d40bba53243bfa7676d7 (HEAD -> featureZ)    	# current commit on featureZ
+Author...
+Date...
+    add featureZ line                                               	# commit message
+
+commit 9dfa291bcd83ef3b4d4156e831724b8f3e20d910 (main, featureX)      	# main + featureX pointing here
+Author...
+Date...
+    add featureX new feature line                                    	# commit message
+
+commit cedd4ab35d4216c0358d77f66dd60cb3419b087b                      	# initial commit
+Author...
+Date...
+    initial commit: add first line                                   	# commit message
+	
+	
+
+
+#
+# switch to main - see difference
+#
+...
+$ git checkout main
+Switched to branch 'main'
+
+...gitplay/git_branch01 (main)
+$ git log
+commit 9dfa291bcd83ef3b4d4156e831724b8f3e20d910 (HEAD -> main, featureX)
+Author...
+Date...
+    add featureX new feature line
+
+commit cedd4ab35d4216c0358d77f66dd60cb3419b087b
+Author...
+Date...
+    initial commit: add first line
+
+
+
+##
+# Notice above: when on '*main' 
+#	git log 
+#	shows no 'featureZ' log record: why?
+#
+#	 featureZ commits are not part of main history.
+#
+#	* git log shows the history of the current branch only
+#	* main and featureZ are on different branch pointers
+#	* featureZ commit is only reachable from featureZ, not from main
+#
+
+##
+# Also notice: 
+#  the initial commit doesn't have (main) 
+#	along-side it 
+commit cedd4ab35d4216c0358d77f66dd60cb3419b087b              # NO '(main) marker
+Author...
+Date...
+    initial commit:
+#
+# because 'main' is just a pointer and while it 
+# *was* pointing to the initial commit, after the 
+# 'first line' add/commit it then moved to the 
+# next (that) commit.
+
+
+
+
+##
+# git log options to try-out
+#
+
+	git log --oneline
+	git log --pretty=oneline
+
+##
+#[Note: may need:
+
+	git log --oneline --decorate 
+
+#  if not seeing lables 'HEAD' 'main' 'featureX' etc.
+##
+
+git log featureZ				# OR
+git log --oneline featureZ		# shows log from featureZ history standpoint
+
+git log all 					# OR
+git log --oneline all			# shows all history
+
+
+##
+# git reset: to undo
+##
+git reset --hard HEAD~1
